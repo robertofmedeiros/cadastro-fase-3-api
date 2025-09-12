@@ -3,6 +3,7 @@ package br.com.senac.api.controllers;
 import br.com.senac.api.controllers.dtos.CarroRequestDTO;
 import br.com.senac.api.modelos.Carro;
 import br.com.senac.api.services.CarroService;
+import br.com.senac.api.utils.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -39,6 +40,17 @@ public class CarroController {
             return ResponseEntity.ok(carroService.atualizar(id, carro));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
+        try {
+            carroService.deletar(id);
+            return ResponseEntity.ok(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(ResponseUtil.response(e.getMessage()));
         }
     }
 }

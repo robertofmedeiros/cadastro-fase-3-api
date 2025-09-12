@@ -2,6 +2,8 @@ package br.com.senac.api.modelos;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 public class Carro {
 
@@ -9,11 +11,13 @@ public class Carro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String marca;
 
     @Column
     private String modelo;
+
+    private LocalDate dataNascimento;
 
     public Long getId() {
         return id;

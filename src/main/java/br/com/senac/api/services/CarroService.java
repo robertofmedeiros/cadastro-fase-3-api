@@ -38,4 +38,12 @@ public class CarroService {
 
         return carroRepositorio.save(carroPersist);
     }
+
+    public void deletar(Long id) {
+        if(!carroRepositorio.existsById(id)) {
+            throw new RuntimeException("Registro não encontrado");
+        }
+
+        carroRepositorio.deleteById(id);
+    }
 }

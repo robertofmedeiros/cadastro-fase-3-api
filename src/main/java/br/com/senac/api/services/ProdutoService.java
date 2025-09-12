@@ -19,11 +19,37 @@ public class ProdutoService {
     }
 
     public Produto criar(ProdutoRequestDTO produto) {
-        Produto produtoPersist = new Produto();
-        produtoPersist.setNome(produto.getNome());
-        produtoPersist.setDescricao(produto.getDescricao());
+        Produto produtoPersist = this.produtoRequestDtoParaProduto(produto);
 
         return produtoRepositorio.save(produtoPersist);
 
+    }
+
+    public Produto atualizar (Long id, ProdutoRequestDTO produto) {
+        if(!produtoRepositorio.existsById(id)) {
+            throw new RuntimeException("Registro não encontrado!");
+        }
+
+        Produto produtoPersist = this.produtoRequestDtoParaProduto(produto);
+
+        produtoPersist.setId(id);
+
+        return produtoRepositorio.save(produtoPersist);
+    }
+
+    public void deletar (Long id) {
+        if(!produtoRepositorio.existsById(id)) {
+            throw new RuntimeException("Registro não encontrado!");
+        }
+
+        produtoRepositorio.deleteById(id);
+    }
+
+    private Produto produtoRequestDtoParaProduto(ProdutoRequestDTO in) {
+        Produto out = new Produto();
+        out.setNome(in.getNome());
+        out.setDescricao(in.getDescricao());
+
+        return out;
     }
 }
