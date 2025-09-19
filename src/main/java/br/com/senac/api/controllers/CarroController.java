@@ -13,6 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/carro")
+@CrossOrigin
 public class CarroController {
 
     @Autowired

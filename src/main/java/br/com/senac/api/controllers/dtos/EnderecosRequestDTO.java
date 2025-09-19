@@ -16,6 +16,8 @@ public class EnderecosRequestDTO {
 
     private String complemento;
 
+    private Long clienteId;
+
     public Integer getCep() {
         return cep;
     }
@@ -70,5 +72,13 @@ public class EnderecosRequestDTO {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public Long getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
     }
 }

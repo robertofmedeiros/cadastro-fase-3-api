@@ -1,5 +1,6 @@
 package br.com.senac.api.modelos;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -26,6 +27,11 @@ public class Enderecos {
     private String numero;
 
     private String complemento;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    @JsonBackReference
+    private Clientes cliente;
 
     public Long getId() {
         return id;
@@ -89,5 +95,13 @@ public class Enderecos {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
     }
 }

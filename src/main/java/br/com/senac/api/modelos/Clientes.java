@@ -2,6 +2,8 @@ package br.com.senac.api.modelos;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Clientes {
 
@@ -20,6 +22,9 @@ public class Clientes {
 
     @Column
     public String documento;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Enderecos> enderecos;
 
     public String getNome() {
         return nome;
@@ -59,5 +64,13 @@ public class Clientes {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Enderecos> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Enderecos> enderecos) {
+        this.enderecos = enderecos;
     }
 }
