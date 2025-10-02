@@ -15,7 +15,7 @@ public class Pedidos {
     private String nomeCliente;
 
     @Column(nullable = false)
-    private String documentoCLiente;
+    private String documentoCliente;
 
     @Column(nullable = false)
     private LocalDateTime dataCriacao;
@@ -38,12 +38,12 @@ public class Pedidos {
         this.nomeCliente = nomeCliente;
     }
 
-    public String getDocumentoCLiente() {
-        return documentoCLiente;
+    public String getDocumentoCliente() {
+        return documentoCliente;
     }
 
-    public void setDocumentoCLiente(String documentoCLiente) {
-        this.documentoCLiente = documentoCLiente;
+    public void setDocumentoCliente(String documentoCliente) {
+        this.documentoCliente = documentoCliente;
     }
 
     public LocalDateTime getDataCriacao() {
