@@ -1,39 +1,12 @@
-package br.com.senac.api.modelos;
-
-import jakarta.persistence.*;
+package br.com.senac.api.controllers.dtos;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Entity
-public class Pedidos {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
+public class PedidosRequestDTO {
     private String nomeCliente;
-
-    @Column(nullable = false)
     private String documentoCliente;
-
-    @Column(nullable = false)
     private LocalDateTime dataCriacao;
-
-    @Column
     private LocalDateTime dataEntrega;
-
-    @OneToMany(mappedBy = "pedido")
-    private List<PedidosItens> itens;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNomeCliente() {
         return nomeCliente;
@@ -65,13 +38,5 @@ public class Pedidos {
 
     public void setDataEntrega(LocalDateTime dataEntrega) {
         this.dataEntrega = dataEntrega;
-    }
-
-    public List<PedidosItens> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<PedidosItens> itens) {
-        this.itens = itens;
     }
 }
