@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PedidosItensService {
@@ -36,6 +37,30 @@ public class PedidosItensService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public PedidosItens atualizar(Long id, PedidosItensRequestDTO item) {
+        Optional<PedidosItens> itemResult =
+                pedidosItensRepositorio.findById(id);
+        if(itemResult.isEmpty()) {
+            throw new RuntimeException("Item não encontrado!");
+        }
+
+        PedidosItens itemPersist =
+                this.pedidosItensRequestDtoParaPedidosItens(item);
+        itemPersist.setPedido(itemResult.get().getPedido());
+        itemPersist.setId(id);
+
+        return pedidosItensRepositorio.save(itemPersist);
+
+    }
+
+    public void deletar(Long id) {
+        if(!pedidosItensRepositorio.existsById(id)) {
+            throw new RuntimeException("Item não encontrado!");
+        }
+
+        pedidosItensRepositorio.deleteById(id);
     }
 
     private PedidosItens

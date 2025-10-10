@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarroService {
@@ -45,5 +46,14 @@ public class CarroService {
         }
 
         carroRepositorio.deleteById(id);
+    }
+
+    public Carro listarById(Long id) {
+        Optional<Carro> carroResult = carroRepositorio.findById(id);
+        if (carroResult.isEmpty()) {
+           throw new RuntimeException("Carro não encontrado!");
+        }
+
+        return carroResult.get();
     }
 }

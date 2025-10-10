@@ -1,5 +1,6 @@
 package br.com.senac.api.modelos;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -25,6 +26,7 @@ public class Pedidos {
     private LocalDateTime dataEntrega;
 
     @OneToMany(mappedBy = "pedido")
+    @JsonManagedReference
     private List<PedidosItens> itens;
 
     public Long getId() {

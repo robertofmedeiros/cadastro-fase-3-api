@@ -54,4 +54,15 @@ public class CarroController {
             return ResponseEntity.badRequest().body(ResponseUtil.response(e.getMessage()));
         }
     }
+
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<?> listarById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(carroService.listarById(id));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(ResponseUtil.response(e.getMessage()));
+        }
+    }
 }
