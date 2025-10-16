@@ -6,6 +6,6 @@ spring:
     show-sql: true
   datasource:
     url: jdbc:postgresql://localhost:5432/cadastro
-    password: Sen@c2023
+    password: 601034
     username: postgres
     driverClassName: org.postgresql.Driver

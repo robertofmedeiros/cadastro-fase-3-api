@@ -17,8 +17,10 @@ public class PedidosItens {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id", nullable = false)
-    @JsonBackReference
     private Pedidos pedido;
+
+    @ManyToOne(optional = false)
+    private Produto produto;
 
     public Long getId() {
         return id;
@@ -50,5 +52,13 @@ public class PedidosItens {
 
     public void setPedido(Pedidos pedido) {
         this.pedido = pedido;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 }
