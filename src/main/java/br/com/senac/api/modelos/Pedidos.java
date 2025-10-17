@@ -14,12 +14,6 @@ public class Pedidos {
     private Long id;
 
     @Column(nullable = false)
-    private String nomeCliente;
-
-    @Column(nullable = false)
-    private String documentoCliente;
-
-    @Column(nullable = false)
     private LocalDateTime dataCriacao;
 
     @Column
@@ -29,28 +23,18 @@ public class Pedidos {
     @JsonManagedReference
     private List<PedidosItens> itens;
 
+    @ManyToOne(optional = false)
+    private Clientes cliente;
+
+    @ManyToOne(optional = false)
+    private Enderecos enderecoEntrega;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
-    public String getDocumentoCliente() {
-        return documentoCliente;
-    }
-
-    public void setDocumentoCliente(String documentoCliente) {
-        this.documentoCliente = documentoCliente;
     }
 
     public LocalDateTime getDataCriacao() {
@@ -75,5 +59,21 @@ public class Pedidos {
 
     public void setItens(List<PedidosItens> itens) {
         this.itens = itens;
+    }
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
+    }
+
+    public Enderecos getEnderecoEntrega() {
+        return enderecoEntrega;
+    }
+
+    public void setEnderecoEntrega(Enderecos enderecoEntrega) {
+        this.enderecoEntrega = enderecoEntrega;
     }
 }

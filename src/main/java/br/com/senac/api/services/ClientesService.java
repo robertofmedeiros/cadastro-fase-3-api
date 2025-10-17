@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientesService {
@@ -26,5 +27,14 @@ public class ClientesService {
 
     public List<Clientes> listarTodos() {
         return clientesRepositorio.findAll();
+    }
+
+    public Clientes listarById(Long id) {
+        Optional<Clientes> clienteResult = clientesRepositorio.findById(id);
+        if(clienteResult.isEmpty()) {
+            throw new RuntimeException("Cliente não encontrado!");
+        }
+
+        return clienteResult.get();
     }
 }

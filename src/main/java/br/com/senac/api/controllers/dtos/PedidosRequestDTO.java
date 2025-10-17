@@ -7,6 +7,8 @@ public class PedidosRequestDTO {
     private String documentoCliente;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataEntrega;
+    private Long clienteId;
+    private Long enderecoEntregaId;
 
     public String getNomeCliente() {
         return nomeCliente;
@@ -38,5 +40,21 @@ public class PedidosRequestDTO {
 
     public void setDataEntrega(LocalDateTime dataEntrega) {
         this.dataEntrega = dataEntrega;
+    }
+
+    public Long getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
+    }
+
+    public Long getEnderecoEntregaId() {
+        return enderecoEntregaId;
+    }
+
+    public void setEnderecoEntregaId(Long enderecoEntregaId) {
+        this.enderecoEntregaId = enderecoEntregaId;
     }
 }
