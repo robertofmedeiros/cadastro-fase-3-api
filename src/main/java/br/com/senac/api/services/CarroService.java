@@ -2,6 +2,7 @@ package br.com.senac.api.services;
 
 import br.com.senac.api.controllers.dtos.CarroRequestDTO;
 import br.com.senac.api.modelos.Carro;
+import br.com.senac.api.modelos.Marca;
 import br.com.senac.api.repositorios.CarroRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,21 @@ public class CarroService {
     @Autowired
     private CarroRepositorio carroRepositorio;
 
+    private MarcaService marcaService;
+
+    public CarroService(MarcaService marcaService) {
+        this.marcaService = marcaService;
+    }
+
     public List<Carro> listarTodos() {
         return carroRepositorio.findAll();
     }
 
     public Carro criar(CarroRequestDTO carro) {
+        Marca marcaResult = marcaService.listarById(carro.getMarcaId());
+
         Carro carroPersist = new Carro();
-        carroPersist.setMarca(carro.getMarca());
+        carroPersist.setMarca(marcaResult);
         carroPersist.setModelo(carro.getModelo());
 
         return carroRepositorio.save(carroPersist);
@@ -32,9 +41,11 @@ public class CarroService {
             throw new Exception("Registro não encontrado");
         }
 
+        Marca marcaResult = marcaService.listarById(carro.getMarcaId());
+
         Carro carroPersist = new Carro();
         carroPersist.setModelo(carro.getModelo());
-        carroPersist.setMarca(carro.getMarca());
+        carroPersist.setMarca(marcaResult);
         carroPersist.setId(id);
 
         return carroRepositorio.save(carroPersist);
