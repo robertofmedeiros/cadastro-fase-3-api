@@ -11,13 +11,11 @@ public class Carro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String marca;
-
     @Column
     private String modelo;
 
-    private LocalDate dataNascimento;
+    @ManyToOne(optional = false)
+    private Marca marca;
 
     public Long getId() {
         return id;
@@ -27,19 +25,19 @@ public class Carro {
         this.id = id;
     }
 
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
     public String getModelo() {
         return modelo;
     }
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 }
