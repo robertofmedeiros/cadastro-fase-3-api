@@ -47,6 +47,23 @@ public class UsuariosService {
     }
 
     public UsuariosResponseDTO loginUsuario(UsuariosRequestDTO usuario) {
+        Optional<Usuarios> resultUsuario =
+                usuariosRepositorio.findByEmail(usuario.getEmail());
+        if(resultUsuario.isEmpty()) {
+            throw new RuntimeException("Usuário não encontrado!");
+        }
 
+        Usuarios usuarioLogin = resultUsuario.get();
+
+        if(passwordEncoder.matches(usuario.getSenha(), usuarioLogin.getSenha())) {
+            UsuariosResponseDTO response = new UsuariosResponseDTO();
+            response.setEmail(usuarioLogin.getEmail());
+            response.setNome(usuarioLogin.getNome());
+            response.setToken(tokenService.gerarToken(usuarioLogin));
+
+            return response;
+        }
+
+        throw new RuntimeException("Senha invalida!");
     }
 }

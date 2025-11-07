@@ -41,7 +41,7 @@ public class TokenService {
                     .getSubject();
 
         } catch (Exception e) {
-            throw new RuntimeException("Token invalido!");
+            return null;
         }
     }
 
